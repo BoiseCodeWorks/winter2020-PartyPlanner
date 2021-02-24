@@ -30,7 +30,7 @@ namespace Party_Planner.Controllers
       }
     }
 
-    [HttpGet("{id}")]  // NOTE '{}' signifies a var parameter
+    [HttpGet("{id}")]
     public ActionResult<Party> Get(int id)
     {
       try
@@ -49,7 +49,7 @@ namespace Party_Planner.Controllers
     {
       try
       {
-        Party newParty = _service.Create(newProd)
+        Party newParty = _service.Create(newProd);
         return Ok(newParty);
       }
       catch (Exception e)

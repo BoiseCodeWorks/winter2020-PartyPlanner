@@ -46,5 +46,11 @@ namespace Party_Planner.Services
       _repo.Delete(id);
       return data;
     }
+
+    internal IEnumerable<PartyPartyMemberViewModel> GetByProfileId(string id)
+    {
+      IEnumerable<PartyPartyMemberViewModel> data = _repo.GetPartiesByProfileId(id);
+      return data;
+    }
   }
 }

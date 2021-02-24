@@ -14,6 +14,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MySqlConnector;
+using Party_Planner.Repositories;
+using Party_Planner.Services;
 
 namespace Party_Planner
 {
@@ -54,6 +56,17 @@ namespace Party_Planner
               });
         });
 
+      // TODO Transient Repositories
+      services.AddTransient<PartiesRepository>();
+      services.AddTransient<ProfilesRepository>();
+      services.AddTransient<PartyMembersRepository>();
+
+
+      // TODO Transient Services
+      services.AddTransient<PartiesService>();
+      services.AddTransient<ProfilesService>();
+      services.AddTransient<PartyMembersService>();
+
 
       services.AddControllers();
 
@@ -85,6 +98,7 @@ namespace Party_Planner
       app.UseHttpsRedirection();
 
       app.UseRouting();
+
       // REVIEW[epic=Authentication] runs authentication process
       app.UseAuthentication();
 

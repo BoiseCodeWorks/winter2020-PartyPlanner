@@ -9,4 +9,11 @@ namespace Party_Planner.Models
     // it is effectively a 'virtual'
     public Profile Creator { get; set; }
   }
+
+
+  // NOTE[epic=many-to-many] Adds the relationshipId to the base class
+  public class PartyPartyMemberViewModel : Party
+  {
+    public int PartyMemberId { get; set; }
+  }
 }

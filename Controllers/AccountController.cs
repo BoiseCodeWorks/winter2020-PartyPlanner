@@ -29,6 +29,7 @@ namespace Party_Planner.Controllers
       try
       {
         // REVIEW[epic=Authentication] how to get the user info from the request token
+        // same as to req.userInfo
         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
         return Ok(_ps.GetOrCreateProfile(userInfo));
       }
