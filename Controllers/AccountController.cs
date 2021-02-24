@@ -23,10 +23,12 @@ namespace Party_Planner.Controllers
     }
 
     [HttpGet]
+    // REVIEW[epic=Authentication] async calls must return a System.Threading.Tasks, this is equivalent to a promise in JS
     public async Task<ActionResult<Profile>> Get()
     {
       try
       {
+        // REVIEW[epic=Authentication] how to get the user info from the request token
         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
         return Ok(_ps.GetOrCreateProfile(userInfo));
       }
