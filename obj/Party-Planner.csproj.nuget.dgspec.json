@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\source\\codeworks\\winter20\\Party-Planner\\Party-Planner.csproj": {}
+    "C:\\source\\codeworks\\winter20\\Party-Planner\\Party-Planner.csproj": {}
   },
   "projects": {
-    "c:\\source\\codeworks\\winter20\\Party-Planner\\Party-Planner.csproj": {
+    "C:\\source\\codeworks\\winter20\\Party-Planner\\Party-Planner.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\source\\codeworks\\winter20\\Party-Planner\\Party-Planner.csproj",
+        "projectUniqueName": "C:\\source\\codeworks\\winter20\\Party-Planner\\Party-Planner.csproj",
         "projectName": "Party-Planner",
-        "projectPath": "c:\\source\\codeworks\\winter20\\Party-Planner\\Party-Planner.csproj",
+        "projectPath": "C:\\source\\codeworks\\winter20\\Party-Planner\\Party-Planner.csproj",
         "packagesPath": "C:\\Users\\MarkO\\.nuget\\packages\\",
-        "outputPath": "c:\\source\\codeworks\\winter20\\Party-Planner\\obj\\",
+        "outputPath": "C:\\source\\codeworks\\winter20\\Party-Planner\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\MarkO\\AppData\\Roaming\\NuGet\\NuGet.Config"

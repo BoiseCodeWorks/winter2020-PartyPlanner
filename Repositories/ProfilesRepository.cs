@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Data;
 using Dapper;
 using Party_Planner.Models;
@@ -17,6 +18,20 @@ namespace Party_Planner.Repositories
     {
       string sql = "SELECT * FROM profiles WHERE id = @id";
       return _db.QueryFirstOrDefault<Profile>(sql, new { id });
+    }
+
+
+    internal IEnumerable<ProfilePartyMemberViewModel> GetByPartyId(int id)
+    {
+      string sql = @"
+      SELECT
+      prof.*
+      pm.id as PartyMemberId
+      FROM partymembers pm
+      JOIN profiles prof ON pm.memberId = prof.id
+      WHERE partyId = @id
+      ";
+      return _db.Query<ProfilePartyMemberViewModel>(sql, new { id });
     }
 
     internal Profile Create(Profile newProfile)

@@ -11,23 +11,12 @@ namespace Party_Planner.Controllers
   public class PartiesController : ControllerBase
   {
     private readonly PartiesService _service;
+    private readonly ProfilesService _ps;
 
-    public PartiesController(PartiesService service)
+    public PartiesController(PartiesService service, ProfilesService ps)
     {
       _service = service;
-    }
-
-    [HttpGet]
-    public ActionResult<Party> Get()
-    {
-      try
-      {
-        return Ok(_service.GetAll());
-      }
-      catch (Exception e)
-      {
-        return BadRequest(e.Message);
-      }
+      _ps = ps;
     }
 
     [HttpGet("{id}")]
@@ -36,6 +25,19 @@ namespace Party_Planner.Controllers
       try
       {
         return Ok(_service.GetById(id));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
+    [HttpGet("{id}/members")]
+    public ActionResult<Party> GetMembers(int id)
+    {
+      try
+      {
+        return Ok(_ps.GetMembersByPartyId(id));
       }
       catch (Exception e)
       {

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Party_Planner.Models;
 using Party_Planner.Repositories;
 
@@ -29,6 +30,11 @@ namespace Party_Planner.Services
         throw new Exception("Invalid Id");
       }
       return profile;
+    }
+
+    internal IEnumerable<Profile> GetMembersByPartyId(int id)
+    {
+      return _repo.GetByPartyId(id);
     }
   }
 }

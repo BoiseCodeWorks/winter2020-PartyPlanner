@@ -1,5 +1,9 @@
 using System;
+using System.Threading.Tasks;
+using CodeWorks.Auth0Provider;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Party_Planner.Exceptions;
 using Party_Planner.Models;
 using Party_Planner.Services;
 
@@ -16,12 +20,18 @@ namespace Party_Planner.Controllers
 
     //REVIEW[epic=many-to-many] Which methods are actually needed here?
     [HttpPost]
-    public ActionResult<string> Create([FromBody] PartyMember pm)
+    [Authorize]
+    public async Task<ActionResult<string>> Create([FromBody] PartyMember pm)
     {
       try
       {
-        _service.Create(pm);
+        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        _service.Create(pm, userInfo.Id);
         return Ok("success");
+      }
+      catch (NotAuthorized e)
+      {
+        return Forbid(e.Message);
       }
       catch (System.Exception e)
       {

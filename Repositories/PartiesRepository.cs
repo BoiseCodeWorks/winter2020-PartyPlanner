@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Dapper;
 using Party_Planner.Models;
 
@@ -66,17 +67,25 @@ namespace Party_Planner.Repositories
     }
 
     // REVIEW[epic=many-to-many] This sql will add the relationship id to a Party, as the PartyPartyMemberViewModel
+    // REVIEW[epic=Populate] and get the creator
     internal IEnumerable<PartyPartyMemberViewModel> GetPartiesByProfileId(string id)
     {
       string sql = @"
       SELECT
-      p.*,
-      pm.id as PartyMemberId
+      part.*,
+      pm.id as PartyMemberId,
+      pr.*
       FROM partymembers pm
-      JOIN parties p ON pm.partyId == p.id
+      JOIN parties part ON pm.partyId == part.id
+      JOIN profiles pr ON part.creatorId = pr.id
       WHERE memberId = @id
       ";
-      return _db.Query<PartyPartyMemberViewModel>(sql, new { id });
+      return _db.Query<PartyPartyMemberViewModel, Profile, PartyPartyMemberViewModel>(sql, (party, profile) =>
+      {
+        party.Creator = profile;
+        return party;
+      }
+        , new { id }, splitOn: "id");
     }
 
     internal void Delete(int id)

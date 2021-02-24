@@ -8,4 +8,10 @@ namespace Party_Planner.Models
     public string Email { get; set; }
     public string Picture { get; set; }
   }
+
+  // NOTE[epic=many-to-many] Object used to add the relationship for the many to many
+  public class ProfilePartyMemberViewModel : Profile
+  {
+    public int PartyMemberId { get; set; }
+  }
 }
