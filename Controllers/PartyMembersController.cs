@@ -10,5 +10,6 @@ namespace Party_Planner.Controllers
     {
       _service = service;
     }
+
   }
 }
